@@ -6,7 +6,7 @@ def index(request):
     try:
         result = subprocess.run(["sudo"], shell=True, capture_output=True)
         text = result.stderr.decode('utf8') + "\n"
-        if hasattr(result, 'stderr')
+        if hasattr(result, 'stderr'):
             text += text + 'stderr: ' + result.stderr.decode('utf8') + "\n"
     except:
         text = "aa"
