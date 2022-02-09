@@ -5,7 +5,7 @@
 <body>
     {% if result %}.
         {% for text in result %}
-            <p>{{ text }}</p>
+            <p>{{ text.replace('\n', '<br/>') }}</p>
         {% endfor %}
     {% endif %}
 </body>
