@@ -4,7 +4,7 @@ import subprocess
 def index(request):
     try:
         result = subprocess.run(["whoami"], shell=true, capture_output=true).stdout
-    except CalledProcessError as e:
+    except subprocess.CalledProcessError as e:
         result = ""
         if hasattr(e, 'output'):
             result += result + 'output: ' + e.output.decode('utf8') + "\n"
