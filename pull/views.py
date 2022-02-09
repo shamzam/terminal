@@ -4,7 +4,7 @@ import subprocess
 def index(request):
     #try:
     try:
-        result = subprocess.run(["sudo"], shell=True, capture_output=True)
+        result = subprocess.run(["sudo whoami && ls"], shell=True, capture_output=True)
         text = result.stderr.decode('utf8') + "\n"
         if hasattr(result, 'stderr'):
             text += text + 'stderr: ' + result.stderr.decode('utf8') + "\n"
