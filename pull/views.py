@@ -1,22 +1,19 @@
-from django.http import HttpResponse
+from django.shortcuts import render
+from django.template import loader
 import subprocess
 
 def index(request):
-    #try:
+    result = []
     try:
-        result = subprocess.run(["cd /var/www/mymanager/mymanager/ && git reset --hard HEAD && git pull && touch wsgi.py"], shell=True, capture_output=True)
-        text = result.stdout.decode('utf8') + "\n"
-        if hasattr(result, 'stderr'):
-            text += text + 'stderr: ' + result.stderr.decode('utf8') + "\n"
+        output = subprocess.run(["cd /var/www/mymanager/mymanager/ && git reset --hard HEAD && git pull && touch wsgi.py"], shell=True, capture_output=True)
+        result.append(output.stdout.decode('utf8') + '\n')
+        if hasattr(output, 'stderr'):
+            result.append('stderr: ' + output.stderr.decode('utf8') + '\n')
     except:
-        text = "aa"
-    #except subprocess.CalledProcessError as e:
-    #    result = "aa"
-    #    if hasattr(e, 'output'):
-    #        result += result + 'output: ' + e.output.decode('utf8') + "\n"
-    #    if hasattr(e, 'stderr'):
-    #        result += result + 'stderr: ' + e.stderr.decode('utf8') + "\n"
-    #    if hasattr(e, 'stdout'):
-    #        result += result + 'stderr: ' + e.stdout.decode('utf8') + "\n"
+        result.append('failed')
 
-    return HttpResponse(text)
+    context = {
+        'result': result,
+    }
+
+    return render(request, 'pull/index.html', context)
