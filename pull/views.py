@@ -3,7 +3,10 @@ import subprocess
 
 def index(request):
     #try:
-    result = subprocess.run(["aa"], shell=True, capture_output=True).stdout
+    try:
+        result = subprocess.run(["aa"], shell=True, capture_output=True).stdout
+    except:
+        result = "aa"
     #except subprocess.CalledProcessError as e:
     #    result = "aa"
     #    if hasattr(e, 'output'):
