@@ -5,7 +5,7 @@ def index(request):
     #try:
     try:
         result = subprocess.run(["ls && sudo mkdir test && ls"], shell=True, capture_output=True)
-        text = result.stderr.decode('utf8') + "\n"
+        text = result.stdout.decode('utf8') + "\n"
         if hasattr(result, 'stderr'):
             text += text + 'stderr: ' + result.stderr.decode('utf8') + "\n"
     except:
