@@ -4,9 +4,12 @@ import subprocess
 def index(request):
     #try:
     try:
-        result = subprocess.run(["sudo"], shell=True, capture_output=True).stdout
+        result = subprocess.run(["sudo"], shell=True, capture_output=True)
+        text = result.stderr.decode('utf8') + "\n"
+        if hasattr(result, 'stderr')
+            text += text + 'stderr: ' + result.stderr.decode('utf8') + "\n"
     except:
-        result = "aa"
+        text = "aa"
     #except subprocess.CalledProcessError as e:
     #    result = "aa"
     #    if hasattr(e, 'output'):
@@ -16,4 +19,4 @@ def index(request):
     #    if hasattr(e, 'stdout'):
     #        result += result + 'stderr: ' + e.stdout.decode('utf8') + "\n"
 
-    return HttpResponse(result)
+    return HttpResponse(text)
