@@ -3,7 +3,7 @@ import subprocess
 
 def index(request):
     try:
-        result = subprocess.run(["sudo whoami"], shell=True, capture_output=True).stdout
+        result = subprocess.run(["aa"], shell=True, capture_output=True).stdout
     except subprocess.CalledProcessError as e:
         result = ""
         if hasattr(e, 'output'):
