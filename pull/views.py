@@ -5,7 +5,6 @@ def index(request):
     #try:
     try:
         result = subprocess.run(["sudo"], shell=True, capture_output=True).stdout
-        result = "bb"
     except:
         result = "aa"
     #except subprocess.CalledProcessError as e:
