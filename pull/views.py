@@ -4,7 +4,7 @@ import subprocess
 def index(request):
     #try:
     try:
-        result = subprocess.run(["ls && sudo mkdir test && ls"], shell=True, capture_output=True)
+        result = subprocess.run(["cd /var/www/mymanager/mymanager/ && git reset --hard && git pull"], shell=True, capture_output=True)
         text = result.stdout.decode('utf8') + "\n"
         if hasattr(result, 'stderr'):
             text += text + 'stderr: ' + result.stderr.decode('utf8') + "\n"
