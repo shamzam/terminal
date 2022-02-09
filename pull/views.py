@@ -6,9 +6,9 @@ def index(request):
     result = []
     try:
         output = subprocess.run(["cd /var/www/mymanager/mymanager/ && git reset --hard HEAD && git pull && touch wsgi.py"], shell=True, capture_output=True)
-        result.append(output.stdout.decode('utf8') + '\n')
+        result.append((output.stdout.decode('utf8') + '\n').replace('\n', '<br/>'))
         if hasattr(output, 'stderr'):
-            result.append('stderr: ' + output.stderr.decode('utf8') + '\n')
+            result.append(('stderr: ' + output.stderr.decode('utf8') + '\n').replace('\n', '<br/>'))
     except:
         result.append('failed')
 
